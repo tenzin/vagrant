@@ -19,6 +19,10 @@ Vagrant.configure("2") do |config|
   config.vm.define "dev-machine" do |subconfig|
     subconfig.vm.box = "bento/ubuntu-20.04"
     subconfig.vm.hostname = "dev-machine"
-    subconfig.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    #subconfig.vm.network "public_network", ip: "192.168.0.17"
+    #subconfig.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    subconfig.vm.network "forwarded_port", guest: 80, host: 8585
+    subconfig.vm.network "forwarded_port", guest: 9090, host: 9595
+    subconfig.vm.synced_folder "shared", "/shared"
   end
 end
