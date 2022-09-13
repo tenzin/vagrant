@@ -3,7 +3,8 @@ Vagrant.configure("2") do |config|
     subconfig.vm.box = "bento/ubuntu-20.04"
     subconfig.vm.hostname = "office-web-test"
     #subconfig.vm.network "public_network", ip: "192.168.0.17"
-    subconfig.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    #subconfig.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
+    subconfig.vm.network "forwarded_port", guest: 80, host: 8585
   end
 
   config.vm.define "open-hrm" do |subconfig|
